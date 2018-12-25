@@ -14,6 +14,7 @@ gem 'bootstrap',               '4.1.3'
 gem 'popper_js',               '1.14.5'
 
 gem 'js-routes'
+gem 'listen'
 gem 'bootstrap-datepicker-rails'
 gem 'semantic-ui-sass'
 gem 'hirb'

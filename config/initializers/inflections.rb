@@ -14,3 +14,12 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'status', 'statuses'
+  inflect.irregular 'history', 'histories'
+  inflect.irregular 'quiz', 'quizzes'
+  inflect.irregular 'university', 'universities'
+  inflect.irregular 'category', 'categories'
+  inflect.irregular 'city', 'cities'
+end
