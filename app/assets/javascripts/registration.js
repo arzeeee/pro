@@ -22,8 +22,6 @@ $(document).ready(function(){
   }
 });
 
-$('.dobselect').datepicker({format: 'yyyy-mm-dd'});
-
 $('#student_university_id').on('select2:select', function() {
   major_sel = $(this).val();
   if (major_sel > 0){

@@ -1,5 +1,5 @@
 <div class="ui inverted menu">
-  <% if logged_in? %>
+  <% if logged_in? && !new_user?%>
       <%= link_to "Mainmenu", mainmenu_path, class: "ui active item" %>
       <%= link_to current_user.username, profile_path, class: "ui item" %>
       <%= link_to "Balance: #{student_detail.balance}", profile_path, class: "ui item" %>

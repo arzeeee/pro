@@ -1,14 +1,14 @@
 <h1>Details</h1>
 
 <%= bootstrap_form_for(@student, url: profile_path, label_errors: true) do |f| %>
-  <%= f.date_field :dob, label: "Tanggal Lahir" %>
-  <%= f.select :school_id, "", { label: "Sekolah", prompt: "Select school" }, { class: "selectpicker"} %>
+  <%= f.date_select :dob, label: "Tanggal Lahir" %></br>
+  <%= f.select :school_id, "", { label: "Sekolah", prompt: "Select school" }, { class: "selectpicker"} %></br>
   <%= f.collection_select :grade_id, @grade, :id,
-                          :gradeName, {label: "Kelas", prompt: "Select grade"}%>
+                          :gradeName, {label: "Kelas", prompt: "Select grade"}%></br>
   <%= f.collection_select :university_id, @university, :id,
-                          :universityName, {label: "Universitas yang diminati", prompt: "Select university"}%>
-  <%= f.select :major_interest_id, "", { label: "Jurusan", prompt: "Select a major" }, { class: "selectpicker"} %>
-  <%= f.text_field :referredBy, {label: "Referral", prompt: "Enter referral username"}%>
+                          :universityName, {label: "Universitas yang diminati", prompt: "Select university"}%></br>
+  <%= f.select :major_interest_id, "", { label: "Jurusan", prompt: "Select a major" }, { class: "selectpicker"} %></br>
+  <%= f.text_field :referredBy, {label: "Referral", prompt: "Enter referral username"}%></br>
   <%= f.submit "Submit" %>
 <% end %>
 

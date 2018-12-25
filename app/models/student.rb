@@ -7,5 +7,7 @@ class Student < ApplicationRecord
   belongs_to :province
   belongs_to :major_interest
   belongs_to :grade
+  
+  validates :dob, :school, :province, :university, :major_interest, :grade, presence: true
 
 end
