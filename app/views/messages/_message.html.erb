@@ -1,8 +1,7 @@
-<div class="message">
-  <div class="message-user">
-    <%= message.user.username %>:
-  </div>
-  <div class="message-content">
-    <%= message.content %>
+<div class="event">
+  <div class="content">
+    <div class="summary">
+      <em><%= message.user.username %>: <%= message.body %></em>
+    </div>
   </div>
 </div>

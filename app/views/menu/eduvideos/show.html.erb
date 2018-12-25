@@ -1,0 +1,12 @@
+<h1>
+  Eduvideo
+</h1>
+<ul>
+  <% @chapters.each do |lesson| %>
+    <li><%= lesson[:chapter] +". "%>
+    <%= link_to lesson[:lessonName],
+    title_path(:subject => params[:subject], :title => lesson[:lessonName],
+    :chapter => lesson[:chapter]) %></br></li>
+  <% end %>
+</ul>
+

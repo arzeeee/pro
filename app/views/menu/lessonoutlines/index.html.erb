@@ -1,0 +1,9 @@
+<h1>
+  Lesson Outline
+</h1>
+<ul>
+  <% @subjects.each do |subject| %>
+    <%= link_to subject.subjectName, lessonoutline_path(:subject => subject.subjectName)%></br>
+  <% end %>
+</ul>
+

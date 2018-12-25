@@ -1,10 +1,57 @@
 Rails.application.routes.draw do
-  root 'messages#index'
-  resources :users
-  resources :messages
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'user/menus#welcome'
+  
+  get :chatroom, to: "chatrooms#index"
+  post :message, to: "messages#create"
+  
+  scope module: :user do
+    resource :profile, except: [:destroy]
+    get :mainmenu, to: "menus#mainmenu"
+    scope module: :details do
+      get :majors
+      get :schools
+      get :grades
+    end
+  end
+  
+  scope module: :auth do
+    delete :logout, to: 'sessions#destroy'
+    get :sign_up, to: 'users#new'
+    post :sign_up, to: 'users#create'
+    get :login, to: 'sessions#new'
+    post :login, to: 'sessions#create'
+  end
+  
+  scope module: :menu do
+    resources :eduvideos, :problemsets, :consultations, param: :subject  do
+      member do
+        resource :chapter, path: '/:chapter' do
+          member do
+            resource :title, path: '/:title'
+          end
+        end
+      end
+    end
+    
+    resource :tryouts, only: :show  do
+      member do
+        resource :type, path: '/:type'
+      end
+    end
+    
+    resources :lessonoutlines, :path => 'outline', param: :subject do
+      member do
+        resource :chapter, path: '/:chapter' do
+          member do
+            resource :title, path: '/:title'
+          end
+        end
+      end
+    end
+  end
   
   mount ActionCable.server, at: '/cable'
+
+  
 end

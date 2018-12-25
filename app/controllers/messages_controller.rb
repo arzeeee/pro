@@ -1,29 +1,23 @@
 class MessagesController < ApplicationController
-  before_action :logged_in_user
-  before_action :get_messages
-
-  def index
-  end
-
+  before_action :require_log_in
+  
   def create
-    message = current_user.messages.build(message_params)
-    if message.save
-      ActionCable.server.broadcast 'room_channel',
-                                   content:  message.content,
-                                   username: message.user.username
+    @message = current_user.messages.build(message_params)
+    if @message.save
+            ActionCable.server.broadcast 'chatroom_channel', 
+            render_to_string(@message)
     else
-      render 'index'
+      render chatroom_path
     end
   end
-
+  
   private
-
-    def get_messages
-      @messages = Message.for_display
-      @message  = current_user.messages.build
-    end
-
     def message_params
-      params.require(:message).permit(:content)
+      params.require(:message).permit(:body)
     end
+    
+    def render_message(message)
+      render_to_string(partial: 'message', locals: { message: message } )
+    end
+  
 end

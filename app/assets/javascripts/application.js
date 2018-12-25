@@ -11,6 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require rails-ujs
+//= require activestorage
 //= require turbolinks
+//= require popper
+//= require bootstrap-datepicker
+//= require bootstrap
+//= require select2
+//= require js-routes
+//= require semantic-ui
+//= require registration
 //= require_tree .
+

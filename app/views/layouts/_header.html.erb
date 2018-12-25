@@ -1,8 +1,0 @@
-<header class="header">
-  <a href="/" class="header-logo"><%= render 'layouts/logo' %></a>
-  <ul class="header-nav">
-    <% if logged_in? %>
-    <li><%= link_to "Sign out", logout_path, method: :delete %>
-    <% end %>
-  </ul>
-</header>

@@ -1,0 +1,20 @@
+<div class="ui inverted menu">
+  <% if logged_in? %>
+      <%= link_to "Mainmenu", mainmenu_path, class: "ui active item" %>
+      <%= link_to current_user.username, profile_path, class: "ui item" %>
+      <%= link_to "Balance: #{student_detail.balance}", profile_path, class: "ui item" %>
+      <%= link_to "Point: #{student_detail.point}", profile_path, class: "ui item" %>
+    <div class="right menu">
+      <%= link_to "logout", logout_path, method: :delete, class: "ui item" %>
+    </div>
+  <% else %>
+    <div class="right menu">
+      <div class="item">
+        <%= link_to "login", login_path, class: "ui item" %>
+      </div>
+      <div class="item">
+        <%= link_to "signup", sign_up_path, class: "ui primary button" %>
+      </div>
+    </div>  
+  <% end %>
+</div>

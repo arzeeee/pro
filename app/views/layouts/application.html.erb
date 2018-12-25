@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>ChatApp</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta charset="utf-8">
-  </head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "ProjectE" %></title>
+    
+    <%= action_cable_meta_tag %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
 
+    <%= javascript_include_tag "application" %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
   <body>
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %> animatedDelay fadeOutUp"><%= message %></div>
-    <% end %>
-    <%= render 'layouts/header' %>
-    <%= yield %>
+  <%= render partial: "shared/navigation" %>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <%= render "layouts/messages" %>
+        <%= yield %>
+      </div>
+    </div><!--/row-->
+    <footer>
+      <%= link_to "Mainmenu", mainmenu_path if logged_in?%></br>
+      <p>&copy; Arzeeeeee 2018</p>
+    </footer>
+  </div> <!-- /container -->
   </body>
 </html>

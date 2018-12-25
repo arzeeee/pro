@@ -1,0 +1,9 @@
+<h1>
+  Eduvideo
+</h1>
+<ul>
+  <% @subjects.each do |subject| %>
+    <%= link_to subject.subjectName, eduvideo_path(:subject => subject.subjectName)%></br>
+  <% end %>
+</ul>
+

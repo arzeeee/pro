@@ -1,0 +1,9 @@
+<h1>
+  Problemset
+</h1>
+<ul>
+  <% @subjects.each do |subject| %>
+    <%= link_to subject.subjectName, problemset_path(:subject => subject.subjectName)%></br>
+  <% end %>
+</ul>
+
