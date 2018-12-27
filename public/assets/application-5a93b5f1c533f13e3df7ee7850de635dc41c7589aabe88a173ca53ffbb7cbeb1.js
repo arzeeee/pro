@@ -20558,6 +20558,9 @@ Based on Rails routes of ChatApp::Application
 // message => /message(.:format)
   // function(options)
   message_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"message",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
+// name => /name(.:format)
+  // function(options)
+  name_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"name",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
 // new_chapter => /eduvideos/:subject/:chapter/new(.:format)
   // function(subject, chapter, options)
   new_chapter_path: Utils.route([["subject",true],["chapter",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"eduvideos",false],[2,[7,"/",false],[2,[3,"subject",false],[2,[7,"/",false],[2,[3,"chapter",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
@@ -44700,7 +44703,6 @@ $.fn.transition.settings = {
 
 
 
-import "js-routes";
 var major_sel = 0;
 var school_sel = 0;
 var school_url = "https://"+window.location.hostname + Routes.schools_path();
@@ -45431,26 +45433,35 @@ function select_major(){
 
 }).call(this);
 (function() {
-  var submit_message;
+  var enter_message;
 
   App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
     connected: function() {},
     disconnected: function() {},
     received: function(data) {
-      return $('#messages').append(data);
+      var req;
+      $('#messages').append(data.message);
+      req = $.getJSON('/name');
+      return req.success(function(response) {
+        return console.log(response[0].name);
+      });
     }
   });
 
   $(document).on('turbolinks:load', function() {
-    return submit_message();
+    return enter_message();
   });
 
-  submit_message = function() {
+  enter_message = function() {
     return $('#message_content').on('keydown', function(event) {
       if (event.keyCode === 13) {
-        $('#send_message').click();
-        event.target.value = "";
-        return event.preventDefault();
+        if (event.target.value.length > 0) {
+          $('#new_message').submit();
+          event.target.value = "";
+          return event.preventDefault();
+        } else {
+          return event.preventDefault();
+        }
       }
     });
   };
@@ -49424,5 +49435,13 @@ function select_major(){
 
 
 
-
+// Flash message closing function on click
+$('.close .icon')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
 ;
+

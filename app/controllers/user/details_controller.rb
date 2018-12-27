@@ -23,4 +23,8 @@ class User::DetailsController < ApplicationController
     end
   end
   
+  def name
+    render :json => [:name => current_user.username].to_json
+  end
+  
 end

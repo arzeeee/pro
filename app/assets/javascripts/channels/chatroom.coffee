@@ -7,15 +7,28 @@ App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('#messages').append data
+    $('#messages').append data.message
+    req = $.getJSON '/name'
+    req.success (response) ->
+      console.log(response[0].name)
+      # if data.user == response[0].name
+      #   console.log("in")
+      #   messages_sel = document.querySelectorAll(".message");
+      #   # messages_sel[messages_sel.length -1].classList.add("right");
+      #   # messages_sel[messages_sel.length -1].classList.add("floated");
+      #   messages_sel[messages_sel.length -1].addClass("right");
+      #   messages_sel[messages_sel.length -1].addClass("floated");
         
 $(document).on 'turbolinks:load', ->
-  submit_message()
-
-submit_message = () ->
+  enter_message()
+  
+enter_message = () ->
   $('#message_content').on 'keydown', (event) ->
     if event.keyCode is 13
-      $('#send_message').click()
-      event.target.value = ""
-      event.preventDefault()
+      if event.target.value.length > 0
+        $('#new_message').submit()
+        event.target.value = ""
+        event.preventDefault()
+      else 
+        event.preventDefault()
 

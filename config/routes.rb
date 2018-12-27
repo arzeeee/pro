@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :majors
       get :schools
       get :grades
+      get :name
     end
   end
   
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
   end
   
   mount ActionCable.server, at: '/cable'
+  
 
   
 end

@@ -22,4 +22,17 @@
 //= require_tree .
 //= require bootstrap
 
+// Flash message closing function on 
+$(document).ready(function(){
+  close_message();
+});
 
+
+function close_message() {
+  $('.message .close').on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  });
+}

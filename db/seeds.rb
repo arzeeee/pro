@@ -37,18 +37,28 @@ Grade.create(gradeName: "10 IPS", gradeType: "SMA")
 ips11 = Grade.create(gradeName: "11 IPS", gradeType: "SMA")
 Grade.create(gradeName: "12 IPS", gradeType: "SMA")
 
-user1 = User.create(username: "test_username1", email:"email@email.com", password: "password", fullname: "Test Subject", phoneNo: "081320460544", role: teacher)
+user1 = User.create(username: "test_username1", email:"email0@email.com", password: "password", fullname: "Test Subject", phoneNo: "081320460544", role: teacher)
 user2 = User.create(username: "test_username2", email:"email2@email.com", password: "password", fullname: "Test Subject", phoneNo: "081320460541", role: student)
+user3 = User.create(username: "test_username3", email:"email3@email.com", password: "password", fullname: "Test Subject", phoneNo: "081320460443", role: teacher)
+user4 = User.create(username: "test_username4", email:"email4@email.com", password: "password", fullname: "Test Subject", phoneNo: "081320405432", role: student)
 
-std1 = Student.create(dob: "-", school: smansab, university: itb, province: jabar,
+
+std1 = Student.create(dob: Date.today, school: smansab, university: itb, province: jabar,
                nise: "-", major_interest: major1, grade: ipa10)
-
-user1.student = std1
-
-std2 = Student.create(dob: "-", school: smansab, university: ugm, province: jabar,
+               
+std2 = Student.create(dob: Date.today, school: smansab, university: ugm, province: jabar,
                nise: "-", major_interest: major1, grade: ips11)
 
+std3 = Student.create(dob: Date.today, school: smansab, university: itb, province: jabar,
+               nise: "-", major_interest: major1, grade: ipa10)
+               
+std4 = Student.create(dob: Date.today, school: smansab, university: ugm, province: jabar,
+               nise: "-", major_interest: major1, grade: ips11)
+
+user1.student = std1
 user2.student = std2
+user3.student = std3
+user4.student = std4
 
 subjects = ["Maths","Biology","Physics","Chemistry","English","Indonesian"]
 

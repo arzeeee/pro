@@ -19,8 +19,10 @@ class User::ProfilesController < User::BaseUserController
     @student.is_edulab = false
     @student.user = current_user
     if @student.save
+      flash[:success] = "Welcome #{current_user.username}!"
       redirect_to mainmenu_path
     else
+      flash[:error] = "Credentials error, please try again"
       redirect_to new_profile_path
     end
   end
