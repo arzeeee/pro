@@ -6,21 +6,13 @@ App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    # Called when there's incoming data on the websocket for this channel
-    $('#messages').append data.message
-    req = $.getJSON '/name'
-    req.success (response) ->
-      console.log(response[0].name)
-      # if data.user == response[0].name
-      #   console.log("in")
-      #   messages_sel = document.querySelectorAll(".message");
-      #   # messages_sel[messages_sel.length -1].classList.add("right");
-      #   # messages_sel[messages_sel.length -1].classList.add("floated");
-      #   messages_sel[messages_sel.length -1].addClass("right");
-      #   messages_sel[messages_sel.length -1].addClass("floated");
+    $('#messages').append render_message(data.message, data.user)
         
 $(document).on 'turbolinks:load', ->
   enter_message()
+  req = $.getJSON '/name'
+  req.success (response) ->
+    window.user =  response[0].name
   
 enter_message = () ->
   $('#message_content').on 'keydown', (event) ->
@@ -31,4 +23,24 @@ enter_message = () ->
         event.preventDefault()
       else 
         event.preventDefault()
+        
+render_message = (message, user) ->
+  if window.user == user
+    return '<div class="event">
+                  <div class="content">
+                    <div class="ui compact right floated message">
+                      <a class="author">' + user + '</a>
+                      <em>' + message + '</em>
+                    </div>
+                  </div>
+                </div>'
+  else
+    return '<div class="event">
+              <div class="content">
+                <div class="ui compact message">
+                  <a class="author">' + user + '</a>
+                  <em>' + message + '</em>
+                </div>
+              </div>
+            </div>'
 

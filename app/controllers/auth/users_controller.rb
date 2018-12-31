@@ -10,17 +10,13 @@ class Auth::UsersController < Auth::BaseAuthController
     if @user.password == @user.password_confirmation
       @user.role_id = Role.where("roleName like ? ", 'Student').pluck(:id)[0]
       if @user.save
-        redirect_to login_path
+        redirect_to verification_path(phoneNo: @user.phoneNo)
       else
         wrong_credential(@user)
       end
     else
       wrong_credential(@user)
     end
-  end
-  
-  def details
-    @user = params[:user]
   end
   
   private
@@ -36,7 +32,7 @@ class Auth::UsersController < Auth::BaseAuthController
         flash[:error] = "Email already taken"
       elsif User.where(:phoneNo => user.phoneNo).exists?
         flash[:error] = "Phone number already taken"
-      elsif user.passwowrd.length < 6
+      elsif user.password.length < 6
         flash[:error] = "Pasword too short"
       else
         flash[:error] = "Credential error, please try again"

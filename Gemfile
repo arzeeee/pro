@@ -28,6 +28,8 @@ gem 'twitter-bootstrap-rails'
 gem 'coffee-rails'
 gem 'jbuilder'
 gem 'sqlite3'
+gem 'twilio-ruby'
+gem 'figaro'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 

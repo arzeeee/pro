@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'user/menus#welcome'
   
+  mount ActionCable.server, at: '/cable'
   get :chatroom, to: "chatrooms#index"
   post :message, to: "messages#create"
   
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
       get :majors
       get :schools
       get :grades
-      get :name
+      get :verification
     end
   end
   
@@ -52,7 +53,15 @@ Rails.application.routes.draw do
     end
   end
   
-  mount ActionCable.server, at: '/cable'
+  scope module: :helper do
+    scope module: :utilities do
+      get :name
+      get :sms_verification, to:  "utilities#sms_send"
+      post :sms_verification, to: "utilities#sms_generate"
+    end
+  end
+  
+  
   
 
   
