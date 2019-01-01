@@ -1,9 +1,10 @@
-<h4 class="ui center aligned medium icon header">
+<h4 class="ui center aligned small icon header">
   <i class="circular orange pencil icon"></i>
   Pencil Co.
 </h4>
 
-<div class="ui two column grid">
+<div class="ui column grid">
+  <!-- Column 1-->
   <div class="twelve wide column">
     <div class="ui fluid raised card chatbox">
       <div class="content">
@@ -11,33 +12,20 @@
           <%= render @messages %>
         </div>
       </div>
-      <div class="extra content">
-        <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path) do |f| %>
-          <div class="field">
-            <div class="ui fluid icon input">
-              <%= f.text_field :body, id: "message_content", data: { behavior: "room_speaker" }, placeholder: "Enter a message..."%>
-            </div>
-          </div>
-        <% end %>
-      </div>
     </div>
   </div>
-  
-  <div class="four wide column">
-    <div class="ui fluid raised card chatbox">
-      <div class="content">
-        <div class="ui inverted vertical menu">
-        <a class="active item">
-          Home
-        </a>
-        <a class="item">
-          Messages
-        </a>
-        <a class="item">
-          Friends
-        </a>
+</div>
+
+<div class="ui column grid">
+  <div class="twelve wide column">
+    <div class="extra content">
+      <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path) do |f| %>
+        <div class="field">
+          <div class="ui fluid icon input">
+            <%= f.text_field :body, id: "message_content", data: { behavior: "room_speaker" }, placeholder: "Enter a message...", autocomplete: :off, remote: true%>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

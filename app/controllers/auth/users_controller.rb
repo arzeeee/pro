@@ -10,7 +10,7 @@ class Auth::UsersController < Auth::BaseAuthController
     if @user.password == @user.password_confirmation
       @user.role_id = Role.where("roleName like ? ", 'Student').pluck(:id)[0]
       if @user.save
-        redirect_to verification_path(phoneNo: @user.phoneNo)
+        redirect_to new_profile_path
       else
         wrong_credential(@user)
       end
