@@ -6,7 +6,6 @@ App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    alert "GAY"
     $('#messages').append render_message(data.message, data.user)
         
 $(document).on 'turbolinks:load', (event) ->
