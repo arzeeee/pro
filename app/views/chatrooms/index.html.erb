@@ -23,6 +23,7 @@
         <div class="field">
           <div class="ui fluid icon input">
             <%= f.text_field :body, id: "message_content", data: { behavior: "room_speaker" }, placeholder: "Enter a message...", autocomplete: :off, remote: true%>
+            <%= f.button :submit, id: "submit_message"%>
           </div>
         </div>
       <% end %>

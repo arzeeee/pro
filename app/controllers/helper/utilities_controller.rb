@@ -12,12 +12,12 @@ class Helper::UtilitiesController < Helper::BaseHelperController
     client = Twilio::REST::Client.new(account_sid, auth_token)
     
     
-    to = '+6281266111561'
+    to = ENV["test_no"]
     
     client.messages.create(
-    from: from,
-    to: to,
-    body: "THIS IS FBI OPEN UP!"
+      from: from,
+      to: to,
+      body: "TEST"
     )
   end
   
