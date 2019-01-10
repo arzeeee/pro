@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
-  before_action :require_log_in
   
   def create
-    @message = current_user.messages.build(message_params)
-    if @message.save
-      Message.sendmessage(@message,current_user)
+    message = current_user.messages.build(message_params)
+    if message.save
+      ActionCable.server.broadcast "chatroom_channel",
+      foo: message.body
     else
       render chatroom_path
     end

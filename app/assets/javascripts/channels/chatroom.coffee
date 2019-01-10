@@ -38,22 +38,12 @@ $(document).on 'turbolinks:load', (event) ->
   req = $.getJSON '/name'
   req.success (response) ->
     window.user =  response[0].name
-    
-#   $.ajax '/',
-# 	type: 'GET'
-# 	dataType: 'html'
-# 	error: (jqXHR, textStatus, errorThrown) ->
-# 		console.log("error")
-# 	success: (data, textStatus, jqXHR) ->
-# 		console.log("success")
-    
+  
 prevent_refresh = () ->
   $('#new_message').on 'submit', () ->
     App.chatroom.send
       message: "hey"
       user: 'kuy'
-
-
 
 enter_message = () ->
   $('#message_content').on 'keydown', (event) ->
