@@ -23,8 +23,6 @@
 //= require bootstrap
 
 // Flash message closing function on 
-
-
 $(document).ready(function(){
   close_message();
 });
