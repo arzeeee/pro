@@ -14,7 +14,8 @@ gem 'bootstrap',               '4.1.3'
 gem 'popper_js',               '1.14.5'
 gem 'sprockets-rails',         '2.3.3'
 
-gem 'devise'
+#gem 'devise'
+gem 'permessage_deflate'
 gem 'devise-bootstrap-views'
 gem 'select2-rails'
 gem 'js-routes'
@@ -24,12 +25,14 @@ gem 'semantic-ui-sass'
 gem 'hirb'
 gem 'bootstrap_form'    
 gem 'pluck_to_hash'
-gem 'twitter-bootstrap-rails'
-gem 'coffee-rails'
-gem 'jbuilder'
-gem 'sqlite3'
-gem 'twilio-ruby'
-gem 'figaro'
+gem 'twitter-bootstrap-rails'     ## Some bootstrap views
+gem 'coffee-rails'                ## For making coffeescripts -> JS
+gem 'jbuilder'                    ## Generate JSON Object 
+gem 'sqlite3'                     ## DB Management  
+gem 'twilio-ruby'                 ## Integrated SMS API by Twilio
+gem 'figaro'                      ## Easier environment variables management
+gem 'faye-websocket'
+gem 'eventmachine'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 

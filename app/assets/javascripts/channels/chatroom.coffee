@@ -1,11 +1,11 @@
 App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
   connected: ->
-    alert "I am connected"
     # Called when the subscription is ready for use on the server
+    alert "I am connected"
 
   disconnected: ->
-    alert "I am disconnected"
     # Called when the subscription has been terminated by the server
+    alert "I am disconnected"
 
   received: (data) ->
     $('#messages').append @render_message(data.message, data.user)
